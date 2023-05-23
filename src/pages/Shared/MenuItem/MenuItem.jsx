@@ -1,7 +1,7 @@
 const MenuItem = ({ item }) => {
   const { name, image, price, recipe } = item;
   return (
-    <>
+    <div data-aos="fade-down" data-aos-duration="1000">
       {" "}
       <div className="flex space-x-4">
         <img
@@ -21,7 +21,7 @@ const MenuItem = ({ item }) => {
         </div>
         <p className="text-[#BB8506]">${price}</p>
       </div>
-    </>
+    </div>
   );
 };
 
