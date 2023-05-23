@@ -31,7 +31,11 @@ const Category = () => {
         modules={[Pagination]}
         className="mySwiper mb-20"
       >
-        <SwiperSlide>
+        <SwiperSlide
+          data-aos="flip-left"
+          data-aos-easing="ease-out-cubic"
+          data-aos-duration="1000"
+        >
           <img src={slide1} alt="" />
           <h3
             className="text-sm md:text-2xl text-center -mt-12 md:-mt-14 text-white shadow-xl uppercase"
@@ -43,7 +47,11 @@ const Category = () => {
             Salads
           </h3>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide
+          data-aos="flip-left"
+          data-aos-easing="ease-out-cubic"
+          data-aos-duration="1000"
+        >
           <img src={slide2} alt="" />{" "}
           <h3
             className="text-sm md:text-2xl text-center -mt-12 md:-mt-14 text-white shadow-xl uppercase"
@@ -55,7 +63,11 @@ const Category = () => {
             Pizzas
           </h3>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide
+          data-aos="flip-left"
+          data-aos-easing="ease-out-cubic"
+          data-aos-duration="1000"
+        >
           <img src={slide3} alt="" />
           <h3
             className="text-sm md:text-2xl text-center -mt-12 md:-mt-14 text-white shadow-xl uppercase"
@@ -67,7 +79,11 @@ const Category = () => {
             Soups
           </h3>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide
+          data-aos="flip-left"
+          data-aos-easing="ease-out-cubic"
+          data-aos-duration="1000"
+        >
           <img src={slide4} alt="" />
           <h3
             className="text-sm md:text-2xl text-center -mt-12 md:-mt-14 text-white shadow-xl uppercase"
@@ -79,7 +95,11 @@ const Category = () => {
             Desserts
           </h3>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide
+          data-aos="flip-left"
+          data-aos-easing="ease-out-cubic"
+          data-aos-duration="1000"
+        >
           <img src={slide5} alt="" />
           <h3
             className="text-sm md:text-2xl text-center -mt-12 md:-mt-14 text-white shadow-xl uppercase"

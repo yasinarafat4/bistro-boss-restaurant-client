@@ -2,7 +2,11 @@ import infoImg from "../../../assets/home/chef-service.jpg";
 
 const Info = () => {
   return (
-    <div className="relative flex justify-center items-center">
+    <div
+      className="relative flex justify-center items-center"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+    >
       <img src={infoImg} alt="" />
       <div className="absolute text-center px-4 py-2 md:px-5 md:py-3 lg:py-10 lg:px-20 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white">
         <h2 className="uppercase text-xs md:text-2xl font-serif">
