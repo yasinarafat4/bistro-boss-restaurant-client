@@ -17,12 +17,12 @@ const FeaturedMenu = () => {
           <h3 style={{ color: "#FFFFFF" }}>March 20, 2023</h3>
           <h3>WHERE CAN I GET SOME?</h3>
           <p className="text-xs lg:text-sm my-3">
-            Discover a culinary paradise at "Taste Haven," our renowned
-            restaurant. Immerse yourself in a symphony of flavors, where
-            innovative dishes meet traditional favorites. From farm-to-table
-            delicacies to exotic international fare, our passionate chefs curate
-            a gastronomic experience that will tantalize your senses. Embark on
-            a remarkable culinary adventure at Taste Haven today.
+            Discover a culinary paradise at Taste Haven our renowned restaurant.
+            Immerse yourself in a symphony of flavors, where innovative dishes
+            meet traditional favorites. From farm-to-table delicacies to exotic
+            international fare, our passionate chefs curate a gastronomic
+            experience that will tantalize your senses. Embark on a remarkable
+            culinary adventure at Taste Haven today.
           </p>
           <div className="my-6 lg:mt-6">
             <button
