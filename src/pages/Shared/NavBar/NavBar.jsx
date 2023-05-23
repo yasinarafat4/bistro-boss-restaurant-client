@@ -38,8 +38,16 @@ const NavBar = () => {
           </ul>
         </div>
         <div className="flex flex-col">
-          <h2 className="text-xl md:text-3xl font-semibold">BISTRO BOSS</h2>
-          <p className="text-xs md:text-base tracking-[5px] md:tracking-[9px]">
+          <h2
+            className="text-xl md:text-3xl font-bold"
+            style={{ fontFamily: "Cinzel, serif" }}
+          >
+            BISTRO BOSS
+          </h2>
+          <p
+            className="text-xs md:text-base tracking-[5px] md:tracking-[9px]"
+            style={{ fontFamily: "Cinzel, serif" }}
+          >
             RESTAURANT
           </p>
         </div>
