@@ -1,13 +1,30 @@
 import { FaShoppingCart, FaUserCircle } from "react-icons/fa";
+import { NavLink, useLocation } from "react-router-dom";
 
 const NavBar = () => {
+  const location = useLocation();
+
+  const isNavLinkActive = (path) => {
+    return location.pathname === path ? "active" : "";
+  };
+
   const navOptions = (
     <>
-      <li>HOME</li>
-      <li>CONTACT US</li>
-      <li>DASHBOARD</li>
-      <li>OUR MENU</li>
-      <li>OUR SHOP</li>
+      <NavLink to="/" className={isNavLinkActive("/")}>
+        <li>HOME</li>
+      </NavLink>
+      <NavLink to="/contact" className={isNavLinkActive("/contact")}>
+        <li>CONTACT US</li>
+      </NavLink>
+      <NavLink to="/dashboard" className={isNavLinkActive("/dashboard")}>
+        <li>DASHBOARD</li>
+      </NavLink>
+      <NavLink to="/menu" className={isNavLinkActive("/menu")}>
+        <li>OUR MENU</li>
+      </NavLink>
+      <NavLink to="/shop" className={isNavLinkActive("/shop")}>
+        <li>OUR SHOP</li>
+      </NavLink>
     </>
   );
   return (
@@ -53,7 +70,7 @@ const NavBar = () => {
         </div>
       </div>
       <div className="ms-40 xl:ms-96 hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 gap-4 font-bold">
+        <ul className="menu menu-horizontal px-1 gap-4 font-[700] text-lg">
           {navOptions}
         </ul>
       </div>
