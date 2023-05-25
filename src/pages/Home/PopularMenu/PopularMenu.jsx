@@ -20,10 +20,10 @@ const PopularMenu = () => {
         <button
           style={{
             padding: "15px 25px 15px 25px",
-            borderBottom: "3px solid #1F2937",
             borderRadius: "8px",
           }}
-          className="border"
+          className="border border-b-4 border-b-[#1F2937] hover:bg-[#1F2937] hover:duration-500 hover:text-[#BB8506] 
+          hover:border-b-[#BB8506]"
         >
           View Full Menu
         </button>

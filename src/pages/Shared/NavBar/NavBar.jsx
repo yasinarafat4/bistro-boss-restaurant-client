@@ -1,5 +1,5 @@
 import { FaShoppingCart, FaUserCircle } from "react-icons/fa";
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 const NavBar = () => {
   const location = useLocation();
@@ -22,7 +22,7 @@ const NavBar = () => {
       <NavLink to="/menu" className={isNavLinkActive("/menu")}>
         <li>OUR MENU</li>
       </NavLink>
-      <NavLink to="/shop" className={isNavLinkActive("/shop")}>
+      <NavLink to="/order/desert" className={isNavLinkActive("/order/desert")}>
         <li>OUR SHOP</li>
       </NavLink>
     </>
@@ -54,20 +54,22 @@ const NavBar = () => {
             {navOptions}
           </ul>
         </div>
-        <div className="flex flex-col">
-          <h2
-            className="text-xl md:text-3xl font-bold"
-            style={{ fontFamily: "Cinzel, serif" }}
-          >
-            BISTRO BOSS
-          </h2>
-          <p
-            className="text-xs md:text-base tracking-[5px] md:tracking-[9px]"
-            style={{ fontFamily: "Cinzel, serif" }}
-          >
-            RESTAURANT
-          </p>
-        </div>
+        <Link to="/">
+          <div className="flex flex-col">
+            <h2
+              className="text-xl md:text-3xl font-bold"
+              style={{ fontFamily: "Cinzel, serif" }}
+            >
+              BISTRO BOSS
+            </h2>
+            <p
+              className="text-xs md:text-base tracking-[5px] md:tracking-[9px]"
+              style={{ fontFamily: "Cinzel, serif" }}
+            >
+              RESTAURANT
+            </p>
+          </div>
+        </Link>
       </div>
       <div className="ms-40 xl:ms-96 hidden lg:flex">
         <ul className="menu menu-horizontal px-1 gap-4 font-[700] text-lg">

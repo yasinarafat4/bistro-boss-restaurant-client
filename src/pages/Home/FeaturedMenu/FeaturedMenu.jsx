@@ -26,13 +26,8 @@ const FeaturedMenu = () => {
           </p>
           <div className="my-6 lg:mt-6">
             <button
-              style={{
-                borderBottom: "4px solid #FFFFFF",
-                borderRadius: "8px",
-                color: "#FFFFFF",
-                opacity: 0.8,
-              }}
-              className="border px-3 py-2 lg:px-5 md:py-3 text-sm hover:bg-[#1F2937] text-[#BB8506] "
+              style={{ borderBottom: "3px solid #FFFFFF" }}
+              className=" hover:bg-[#1F2937] hover:duration-500 hover:text-[#BB8506] font-semibold py-2 px-4 rounded-md"
             >
               READ MORE
             </button>

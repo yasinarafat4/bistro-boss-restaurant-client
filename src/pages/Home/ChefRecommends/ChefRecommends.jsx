@@ -75,7 +75,7 @@ const ChefRecommends = () => {
               <div className="px-6 py-4 flex justify-center">
                 <button
                   style={{ borderBottom: "3px solid #BB8506" }}
-                  className="bg-[#E8E8E8] hover:bg-[#1F2937] text-[#BB8506] font-semibold py-2 px-4 rounded-md"
+                  className="bg-[#E8E8E8] hover:bg-[#1F2937] hover:duration-500 text-[#BB8506] font-semibold py-2 px-4 rounded-md"
                 >
                   View Recipe
                 </button>

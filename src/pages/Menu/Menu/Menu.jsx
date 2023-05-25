@@ -2,9 +2,6 @@ import { Helmet } from "react-helmet-async";
 import Cover from "../../Shared/Cover/Cover";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useMenu from "../../../hooks/useMenu";
-import MenuItem from "../../Shared/MenuItem/MenuItem";
-import OrderButton from "../../Shared/OrderButton/OrderButton";
-import InsideCover from "../../Shared/InsideCover/InsideCover";
 
 // Cover Images
 import menuImg from "../../../assets/menu/banner3.jpg";
@@ -36,54 +33,47 @@ const Menu = () => {
         subHeading={"---Don't Miss---"}
         heading={"TODAY'S OFFER"}
       ></SectionTitle>
-
-      {/*Todays Offer */}
       <MenuCategory items={offers}></MenuCategory>
-      <OrderButton></OrderButton>
 
       {/* Desserts */}
-      <InsideCover
+      <MenuCategory
+        items={deserts}
         bgImg={dessertsImage}
-        title={"Desserts"}
+        title={"dessert"}
         text={
           "Indulge in a heavenly symphony of flavors with our decadent desserts. Treat yourself today and satisfy your cravings!"
         }
-      ></InsideCover>
-      <MenuCategory items={deserts}></MenuCategory>
-      <OrderButton></OrderButton>
+      ></MenuCategory>
 
       {/* Pizza */}
-      <InsideCover
+      <MenuCategory
+        items={pizza}
         bgImg={pizzaImage}
-        title={"Pizza"}
+        title={"pizza"}
         text={
           "Indulge in a heavenly symphony of flavors with our decadent Pizza. Treat yourself today and satisfy your cravings!"
         }
-      ></InsideCover>
-      <MenuCategory items={pizza}></MenuCategory>
-      <OrderButton></OrderButton>
+      ></MenuCategory>
 
       {/* Salads */}
-      <InsideCover
+      <MenuCategory
+        items={salads}
         bgImg={saladsImage}
-        title={"Salads"}
+        title={"salad"}
         text={
           "Indulge in a heavenly symphony of flavors with our decadent Salads. Treat yourself today and satisfy your cravings!"
         }
-      ></InsideCover>
-      <MenuCategory items={salads}></MenuCategory>
-      <OrderButton></OrderButton>
+      ></MenuCategory>
 
       {/* Soups */}
-      <InsideCover
+      <MenuCategory
+        items={soups}
         bgImg={soupsImage}
-        title={"Soups"}
+        title={"soup"}
         text={
           "Indulge in a heavenly symphony of flavors with our decadent Soups. Treat yourself today and satisfy your cravings!"
         }
-      ></InsideCover>
-      <MenuCategory items={soups}></MenuCategory>
-      <OrderButton></OrderButton>
+      ></MenuCategory>
     </div>
   );
 };
