@@ -1,0 +1,100 @@
+import { useEffect } from "react";
+
+import {
+  loadCaptchaEnginge,
+  LoadCanvasTemplate,
+  LoadCanvasTemplateNoReload,
+  validateCaptcha,
+} from "react-simple-captcha";
+import loginImg from "../../assets/others/login.png";
+
+const Login = () => {
+  useEffect(() => {
+    loadCaptchaEnginge(6);
+  }, []);
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+  };
+
+  return (
+    <div className="hero min-h-screen bg-[url(https://i.ibb.co/3NkCw3b/Wood-pattern-white-brown1x-Png-Vectors-Photos-and-PSD-files-Free-Download.png)]">
+      <div
+        className="hero-content flex-col lg:flex-row  bg-[url(https://i.ibb.co/3NkCw3b/Wood-pattern-white-brown1x-Png-Vectors-Photos-and-PSD-files-Free-Download.png)] lg:py-[50px] lg:mx-20"
+        style={{ boxShadow: "10px 10px 10px 10px rgba(0, 0, 0, 0.25)" }}
+      >
+        <div className="text-center lg:text-left">
+          <img
+            className="w-full md:w-6/12 lg:w-9/12 mx-auto"
+            src={loginImg}
+            alt=""
+          />
+        </div>
+        <div className="card flex-shrink-0 w-full max-w-sm">
+          <form onSubmit={handleLogin} className="card-body">
+            <h2 className="text-3xl text-center font-bold">Login</h2>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text text-lg font-semibold">Email</span>
+              </label>
+              <input
+                type="email"
+                name="email"
+                placeholder="Type here"
+                className="input input-bordered"
+                required
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text text-lg font-semibold">
+                  Password
+                </span>
+              </label>
+              <input
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                className="input input-bordered"
+                required
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <LoadCanvasTemplate />
+              </label>
+              <input
+                type="text"
+                name="captcha"
+                placeholder="Type here"
+                className="input input-bordered"
+                required
+              />
+              <button className="btn btn-outline btn-info btn-xs mt-2">
+                Validate
+              </button>
+            </div>
+            <div className="form-control mt-6">
+              <input
+                type="submit"
+                value="Login"
+                className="text-lg bg-[#D1A054B3] hover:bg-[#D1A054] hover:duration-500 text-white font-semibold py-2 rounded"
+              />
+            </div>
+            <div className="text-center">
+              <p className="font-semibold text-lg text-[#D1A054]">
+                New here? Create a New Account
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Login;

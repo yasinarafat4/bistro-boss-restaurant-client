@@ -1,5 +1,6 @@
-import { FaShoppingCart, FaUserCircle } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import shopIcon from "../../../assets/icon/shop-icon.png";
 
 const NavBar = () => {
   const location = useLocation();
@@ -23,7 +24,14 @@ const NavBar = () => {
         <li>OUR MENU</li>
       </NavLink>
       <NavLink to="/order/desert" className={isNavLinkActive("/order/desert")}>
-        <li>OUR SHOP</li>
+        <div className="flex">
+          <li>OUR SHOP</li>
+          <img
+            className="h-[28px] w-[36px] lg:h-[30px] lg:w-[35px]"
+            src={shopIcon}
+            alt=""
+          />
+        </div>
       </NavLink>
     </>
   );
@@ -71,15 +79,16 @@ const NavBar = () => {
           </div>
         </Link>
       </div>
-      <div className="ms-40 xl:ms-96 hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 gap-4 font-[700] text-lg">
+      <div className="ms-40 xl:ms-80 hidden lg:flex">
+        <ul className="menu menu-horizontal px-1 gap-6 font-[600] text-sm xl:text-lg">
           {navOptions}
         </ul>
       </div>
-      <div className="navbar-end">
-        <FaShoppingCart />
-        <button className="btn btn-success mx-2">Login</button>
-        <FaUserCircle />
+      <div className="navbar-end flex gap-2 font-[600] text-sm xl:text-lg">
+        <NavLink to="/login" className={isNavLinkActive("/login")}>
+          <p>LOGIN</p>
+        </NavLink>
+        <FaUserCircle className="text-2xl lg:text-3xl" />
       </div>
     </div>
   );
