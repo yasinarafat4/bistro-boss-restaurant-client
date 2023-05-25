@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import {
   loadCaptchaEnginge,
@@ -9,6 +9,9 @@ import {
 import loginImg from "../../assets/others/login.png";
 
 const Login = () => {
+  const captchaRef = useRef(null);
+  const [disabled, setDisabled] = useState(true);
+
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
@@ -19,6 +22,15 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
+  };
+
+  const handleValidateCaptcha = () => {
+    const user_captcha_value = captchaRef.current.value;
+    if (validateCaptcha(user_captcha_value)) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
   };
 
   return (
@@ -69,20 +81,25 @@ const Login = () => {
               </label>
               <input
                 type="text"
+                ref={captchaRef}
                 name="captcha"
                 placeholder="Type here"
                 className="input input-bordered"
                 required
               />
-              <button className="btn btn-outline btn-info btn-xs mt-2">
+              <button
+                onClick={handleValidateCaptcha}
+                className="btn btn-outline btn-xs mt-2"
+              >
                 Validate
               </button>
             </div>
             <div className="form-control mt-6">
               <input
+                disabled={disabled}
                 type="submit"
                 value="Login"
-                className="text-lg bg-[#D1A054B3] hover:bg-[#D1A054] hover:duration-500 text-white font-semibold py-2 rounded"
+                className="btn text-lg bg-[#D1A054B3] hover:bg-[#D1A054] hover:duration-500 text-white font-semibold border-none"
               />
             </div>
             <div className="text-center">
