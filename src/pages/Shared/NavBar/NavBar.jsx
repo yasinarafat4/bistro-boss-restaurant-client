@@ -1,9 +1,18 @@
 import { FaUserCircle } from "react-icons/fa";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import shopIcon from "../../../assets/icon/shop-icon.png";
+import { useContext } from "react";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const NavBar = () => {
+  const { user, logOut } = useContext(AuthContext);
   const location = useLocation();
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
 
   const isNavLinkActive = (path) => {
     return location.pathname === path ? "active" : "";
@@ -85,10 +94,23 @@ const NavBar = () => {
         </ul>
       </div>
       <div className="navbar-end flex gap-2 font-[600] text-sm xl:text-lg">
-        <NavLink to="/login" className={isNavLinkActive("/login")}>
-          <p>LOGIN</p>
-        </NavLink>
-        <FaUserCircle className="text-2xl lg:text-3xl" />
+        {user ? (
+          <>
+            <p onClick={handleLogOut} className="cursor-pointer">
+              LOGOUT
+            </p>
+          </>
+        ) : (
+          <>
+            <NavLink to="/login" className={isNavLinkActive("/login")}>
+              <p>LOGIN</p>
+            </NavLink>
+          </>
+        )}
+        <FaUserCircle
+          title="User Profile"
+          className="text-2xl lg:text-3xl cursor-pointer"
+        />
       </div>
     </div>
   );
