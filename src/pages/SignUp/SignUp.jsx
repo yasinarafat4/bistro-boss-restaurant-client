@@ -1,19 +1,44 @@
 import { Link } from "react-router-dom";
 import signUpImg from "../../assets/others/login.png";
 import { useForm } from "react-hook-form";
+import { FiEye, FiEyeOff } from "react-icons/fi";
+import { useContext, useState } from "react";
+import { Helmet } from "react-helmet-async";
+import { AuthContext } from "../../providers/AuthProvider";
+
+/*
+Email: bistro@boss.com
+Pass: bisTro4@
+*/
 
 const SignUp = () => {
+  const { createUser } = useContext(AuthContext);
+  const [showPassword, setShowPassword] = useState(false);
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
+
   const onSubmit = (data) => {
-    console.log(data);
+    createUser(data.email, data.password).then((result) => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
+    });
+
+    reset();
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevVisible) => !prevVisible);
   };
 
   return (
     <div>
+      <Helmet>
+        <title>Bistro | Sign Up</title>
+      </Helmet>
       <div className="hero min-h-screen bg-[url(https://i.ibb.co/3NkCw3b/Wood-pattern-white-brown1x-Png-Vectors-Photos-and-PSD-files-Free-Download.png)]">
         <div
           className="hero-content flex-col lg:flex-row  bg-[url(https://i.ibb.co/3NkCw3b/Wood-pattern-white-brown1x-Png-Vectors-Photos-and-PSD-files-Free-Download.png)] lg:py-[50px] lg:mx-20"
@@ -81,35 +106,53 @@ const SignUp = () => {
                   </span>
                 </label>
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   {...register("password", {
                     required: true,
                     minLength: 6,
                     maxLength: 20,
+                    pattern: /(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$&*])(?=.*[0-9])/,
                   })}
                   placeholder="Enter your password"
                   className="input input-bordered"
                 />
+                <div
+                  className="absolute top-[345px] right-10 transform -translate-y-1/2 h-8 flex items-center cursor-pointer"
+                  onClick={togglePasswordVisibility}
+                >
+                  {showPassword ? (
+                    <FiEyeOff className="text-gray-500" />
+                  ) : (
+                    <FiEye className="text-gray-500" />
+                  )}
+                </div>
                 {errors.password && (
                   <>
-                    {errors.password.type === "required" && (
+                    {errors.password?.type === "required" && (
                       <span className="text-red-700 font-semibold">
                         Password is required!
                       </span>
                     )}
-                    {errors.password.type === "minLength" && (
+                    {errors.password?.type === "minLength" && (
                       <span className="text-red-700 font-semibold">
                         Your password must be at least 6 characters long!
                       </span>
                     )}
-                    {errors.password.type === "maxLength" && (
+                    {errors.password?.type === "maxLength" && (
                       <span className="text-red-700 font-semibold">
                         Your password must not exceed 20 characters!
+                      </span>
+                    )}
+                    {errors.password?.type === "pattern" && (
+                      <span className="text-red-700 font-semibold">
+                        Your password must have one uppercase, one lowercase,
+                        one number and one special character!
                       </span>
                     )}
                   </>
                 )}
               </div>
+
               <div className="form-control mt-6">
                 <input
                   type="submit"
