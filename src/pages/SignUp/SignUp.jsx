@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import signUpImg from "../../assets/others/login.png";
 import { useForm } from "react-hook-form";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 /*
 Email: bistro@boss.com
@@ -12,7 +13,7 @@ Pass: bisTro4@
 */
 
 const SignUp = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUserProfile } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const {
     register,
@@ -20,14 +21,23 @@ const SignUp = () => {
     reset,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
     createUser(data.email, data.password).then((result) => {
       const loggedUser = result.user;
       console.log(loggedUser);
+      updateUserProfile(data.name, data.photoURL)
+        .then(() => {
+          console.log("User Profile Info Updated");
+          reset();
+          Swal.fire("Good job!", "You have successfully signed up!", "success");
+          navigate("/");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     });
-
-    reset();
   };
 
   const togglePasswordVisibility = () => {
@@ -59,7 +69,7 @@ const SignUp = () => {
                   <span className="label-text text-lg font-semibold">Name</span>
                 </label>
                 <input
-                  type="name"
+                  type="text"
                   {...register("name", { required: true })}
                   placeholder="Type here"
                   className="input input-bordered"
@@ -67,6 +77,27 @@ const SignUp = () => {
                 {errors.name && (
                   <span className="text-red-700 font-semibold">
                     Name is required! Please give your name.
+                  </span>
+                )}
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text text-lg font-semibold">
+                    Photo URL
+                  </span>
+                </label>
+                <input
+                  type="url"
+                  {...register("photoURL", {
+                    required: true,
+                    pattern: /^(ftp|http|https):\/\/[^ "]+$/,
+                  })}
+                  placeholder="Photo URL"
+                  className="input input-bordered"
+                />
+                {errors.photoURL && errors.photoURL.type === "required" && (
+                  <span className="text-red-700 font-semibold">
+                    Photo URL is required! Please provide a valid URL.
                   </span>
                 )}
               </div>
@@ -99,7 +130,7 @@ const SignUp = () => {
                   </>
                 )}
               </div>
-              <div className="form-control">
+              <div className="form-control relative">
                 <label className="label">
                   <span className="label-text text-lg font-semibold">
                     Password
@@ -117,7 +148,7 @@ const SignUp = () => {
                   className="input input-bordered"
                 />
                 <div
-                  className="absolute top-[345px] right-10 transform -translate-y-1/2 h-8 flex items-center cursor-pointer"
+                  className="absolute top-[70px] right-4 transform -translate-y-1/2 h-8 flex items-center cursor-pointer"
                   onClick={togglePasswordVisibility}
                 >
                   {showPassword ? (

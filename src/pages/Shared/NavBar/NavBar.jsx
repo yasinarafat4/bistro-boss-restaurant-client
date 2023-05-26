@@ -1,4 +1,4 @@
-import { FaUserCircle } from "react-icons/fa";
+import { FaUserCircle, FaLock } from "react-icons/fa";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import shopIcon from "../../../assets/icon/shop-icon.png";
 import { useContext } from "react";
@@ -42,6 +42,9 @@ const NavBar = () => {
           />
         </div>
       </NavLink>
+      <Link to="/secret">
+        <FaLock></FaLock>
+      </Link>
     </>
   );
   return (
@@ -99,6 +102,11 @@ const NavBar = () => {
             <p onClick={handleLogOut} className="cursor-pointer">
               LOGOUT
             </p>
+            <div className="avatar">
+              <div className="w-8 rounded-full ring ring-offset-base-100 ring-offset-2">
+                <img title={user?.displayName} src={user?.photoURL} />
+              </div>
+            </div>
           </>
         ) : (
           <>
@@ -107,10 +115,6 @@ const NavBar = () => {
             </NavLink>
           </>
         )}
-        <FaUserCircle
-          title="User Profile"
-          className="text-2xl lg:text-3xl cursor-pointer"
-        />
       </div>
     </div>
   );

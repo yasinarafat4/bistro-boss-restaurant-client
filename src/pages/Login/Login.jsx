@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import Swal from "sweetalert2";
 
@@ -16,6 +16,10 @@ const Login = () => {
   const [disabled, setDisabled] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.form?.pathname || "/";
 
   const { signIn } = useContext(AuthContext);
 
@@ -46,6 +50,7 @@ const Login = () => {
           },
         });
         form.reset();
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         if (error.code === "auth/user-not-found") {
