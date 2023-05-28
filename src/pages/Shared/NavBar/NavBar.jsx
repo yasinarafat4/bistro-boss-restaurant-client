@@ -1,6 +1,5 @@
-import { FaUserCircle, FaLock } from "react-icons/fa";
+import { FaLock, FaShoppingCart } from "react-icons/fa";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import shopIcon from "../../../assets/icon/shop-icon.png";
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 
@@ -33,14 +32,13 @@ const NavBar = () => {
         <li>OUR MENU</li>
       </NavLink>
       <NavLink to="/order/desert" className={isNavLinkActive("/order/desert")}>
-        <div className="flex">
-          <li>OUR SHOP</li>
-          <img
-            className="h-[28px] w-[36px] lg:h-[30px] lg:w-[35px]"
-            src={shopIcon}
-            alt=""
-          />
-        </div>
+        <li>OUR SHOP</li>
+      </NavLink>
+      <NavLink to="/">
+        <button className="btn btn-sm gap-2">
+          <FaShoppingCart></FaShoppingCart>
+          <div className="badge badge-secondary">+0</div>
+        </button>
       </NavLink>
       <Link to="/secret">
         <FaLock></FaLock>
@@ -69,7 +67,7 @@ const NavBar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-opacity-70 bg-black text-white rounded-box w-52"
+            className="menu menu-compact dropdown-content space-y-4 p-2 shadow bg-opacity-70 bg-black text-white rounded-box w-52"
           >
             {navOptions}
           </ul>
@@ -91,7 +89,7 @@ const NavBar = () => {
           </div>
         </Link>
       </div>
-      <div className="ms-40 xl:ms-80 hidden lg:flex">
+      <div className="hidden lg:flex justify-center items-center mt-4 ms-12">
         <ul className="menu menu-horizontal px-1 gap-6 font-[600] text-sm xl:text-lg">
           {navOptions}
         </ul>

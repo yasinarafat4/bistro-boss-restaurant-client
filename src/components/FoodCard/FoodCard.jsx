@@ -1,5 +1,39 @@
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+
 const FoodCard = ({ item }) => {
   const { price, name, image, recipe } = item;
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleAddToCart = (item) => {
+    console.log(item);
+    if (user) {
+      fetch("http://localhost:5000/carts")
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            Swal.fire("Good job!", "You clicked the button!", "success");
+          }
+        });
+    } else {
+      Swal.fire({
+        title: "Please login",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Login Now",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
+      });
+    }
+  };
+
   return (
     <div
       className="card w-11/12 bg-[#F3F3F3] shadow-xl my-3 md:my-8 mx-auto"
@@ -17,6 +51,7 @@ const FoodCard = ({ item }) => {
         <p>{recipe}</p>
         <div className="card-actions">
           <button
+            onClick={handleAddToCart}
             style={{ borderBottom: "3px solid #BB8506" }}
             className="bg-[#E8E8E8] hover:bg-[#1F2937] hover:duration-500 text-[#BB8506] font-semibold py-2 px-4 rounded-md"
           >
