@@ -2,10 +2,12 @@ import { FaLock, FaShoppingCart } from "react-icons/fa";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
+import useCart from "../../../hooks/useCart";
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
   const location = useLocation();
+  const [cart] = useCart();
 
   const handleLogOut = () => {
     logOut()
@@ -25,7 +27,10 @@ const NavBar = () => {
       <NavLink to="/contact" className={isNavLinkActive("/contact")}>
         <li>CONTACT US</li>
       </NavLink>
-      <NavLink to="/dashboard" className={isNavLinkActive("/dashboard")}>
+      <NavLink
+        to="/dashboard/mycart"
+        className={isNavLinkActive("/dashboard/mycart")}
+      >
         <li>DASHBOARD</li>
       </NavLink>
       <NavLink to="/menu" className={isNavLinkActive("/menu")}>
@@ -37,7 +42,7 @@ const NavBar = () => {
       <NavLink to="/">
         <button className="btn btn-sm gap-2">
           <FaShoppingCart></FaShoppingCart>
-          <div className="badge badge-secondary">+0</div>
+          <div className="badge badge-secondary">+ {cart?.length || 0}</div>
         </button>
       </NavLink>
       <Link to="/secret">
