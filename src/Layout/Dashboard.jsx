@@ -1,14 +1,18 @@
 import {
+  FaBook,
   FaCalendarAlt,
   FaCalendarPlus,
   FaHome,
+  FaListUl,
   FaShoppingCart,
+  FaUsers,
   FaWallet,
 } from "react-icons/fa";
 import { GiHamburgerMenu, GiStarsStack } from "react-icons/gi";
 import { SiShopify } from "react-icons/si";
 import { HiMail } from "react-icons/hi";
-import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { ImSpoonKnife } from "react-icons/im";
+import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import useCart from "../hooks/useCart";
 
@@ -18,6 +22,9 @@ const Dashboard = () => {
   const isNavLinkActive = (path) => {
     return location.pathname === path ? "activeDash" : "defaultDash";
   };
+
+  // TODO: load data from the server to have dynamic isAdmin based on Data
+  const isAdmin = false;
 
   return (
     <>
@@ -41,53 +48,115 @@ const Dashboard = () => {
           <div className="drawer-side bg-[ #F6F6F6]">
             <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
             <ul className="menu p-4 w-80 bg-[#D1A054] text-base-content uppercase font-semibold space-y-5">
-              {/* Dashboards menu start */}
-              <NavLink
-                to="/dashboard/home"
-                className={isNavLinkActive("/dashboard/home")}
-              >
-                <FaHome className="text-2xl" />
-                <li>User Home</li>
-              </NavLink>
-              <NavLink
-                to="/dashboard/reservations"
-                className={isNavLinkActive("/dashboard/reservations")}
-              >
-                <FaCalendarAlt className="text-2xl" />
-                <li>Reservation</li>
-              </NavLink>
-              <NavLink
-                to="/dashboard/history"
-                className={isNavLinkActive("/dashboard/history")}
-              >
-                <FaWallet className="text-2xl" />
-                <li>Payment History</li>
-              </NavLink>
-              <NavLink
-                to="/dashboard/mycart"
-                className={isNavLinkActive("/dashboard/mycart")}
-              >
-                <FaShoppingCart className="text-2xl" />
-                <li>My Cart</li>
-                <div className="badge badge-secondary">
-                  + {cart?.length || 0}
+              <Link to="/">
+                <div className="flex flex-col mb-10">
+                  <h2
+                    className="text-2xl font-extrabold"
+                    style={{ fontFamily: "Cinzel, serif" }}
+                  >
+                    BISTRO BOSS
+                  </h2>
+                  <p
+                    className="text-base tracking-[4px] font-extrabold"
+                    style={{ fontFamily: "Cinzel, serif" }}
+                  >
+                    RESTAURANT
+                  </p>
                 </div>
-              </NavLink>
-              <NavLink
-                to="/dashboard/reviews"
-                className={isNavLinkActive("/dashboard/reviews")}
-              >
-                <GiStarsStack className="text-2xl" />
-                <li>Add Review</li>
-              </NavLink>
-              <NavLink
-                to="/dashboard/mybookings"
-                className={isNavLinkActive("/dashboard/mybookings")}
-              >
-                <FaCalendarPlus className="text-2xl" />
-                <li>My Booking</li>
-              </NavLink>
-              {/* Dashboards menu end */}
+              </Link>
+              {/* Dynamic Dashboard Menu here */}
+              {isAdmin ? (
+                <>
+                  {/* Admin's menu start */}
+                  <NavLink
+                    to="/dashboard/adminHome"
+                    className={isNavLinkActive("/dashboard/adminHome")}
+                  >
+                    <FaHome className="text-2xl" />
+                    <li>Admin Home</li>
+                  </NavLink>
+                  <NavLink
+                    to="/dashboard/addItems"
+                    className={isNavLinkActive("/dashboard/addItems")}
+                  >
+                    <ImSpoonKnife className="text-2xl" />
+                    <li>Add Items</li>
+                  </NavLink>
+                  <NavLink
+                    to="/dashboard/manageItems"
+                    className={isNavLinkActive("/dashboard/manageItems")}
+                  >
+                    <FaListUl className="text-2xl" />
+                    <li>Manage Items</li>
+                  </NavLink>
+                  <NavLink
+                    to="/dashboard/manageBookings"
+                    className={isNavLinkActive("/dashboard/manageBookings")}
+                  >
+                    <FaBook className="text-2xl" />
+                    <li>Manage Bookings</li>
+                  </NavLink>
+                  <NavLink
+                    to="/dashboard/allUsers"
+                    className={isNavLinkActive("/dashboard/allUsers")}
+                  >
+                    <FaUsers className="text-2xl" />
+                    <li>All Users</li>
+                  </NavLink>
+                  {/* Admin's menu end */}
+                </>
+              ) : (
+                <>
+                  {/* Users menu start */}
+                  <NavLink
+                    to="/dashboard/home"
+                    className={isNavLinkActive("/dashboard/home")}
+                  >
+                    <FaHome className="text-2xl" />
+                    <li>User Home</li>
+                  </NavLink>
+                  <NavLink
+                    to="/dashboard/reservations"
+                    className={isNavLinkActive("/dashboard/reservations")}
+                  >
+                    <FaCalendarAlt className="text-2xl" />
+                    <li>Reservation</li>
+                  </NavLink>
+                  <NavLink
+                    to="/dashboard/history"
+                    className={isNavLinkActive("/dashboard/history")}
+                  >
+                    <FaWallet className="text-2xl" />
+                    <li>Payment History</li>
+                  </NavLink>
+                  <NavLink
+                    to="/dashboard/mycart"
+                    className={isNavLinkActive("/dashboard/mycart")}
+                  >
+                    <FaShoppingCart className="text-2xl" />
+                    <li>My Cart</li>
+                    <div className="badge badge-secondary">
+                      + {cart?.length || 0}
+                    </div>
+                  </NavLink>
+                  <NavLink
+                    to="/dashboard/reviews"
+                    className={isNavLinkActive("/dashboard/reviews")}
+                  >
+                    <GiStarsStack className="text-2xl" />
+                    <li>Add Review</li>
+                  </NavLink>
+                  <NavLink
+                    to="/dashboard/mybookings"
+                    className={isNavLinkActive("/dashboard/mybookings")}
+                  >
+                    <FaCalendarPlus className="text-2xl" />
+                    <li>My Booking</li>
+                  </NavLink>
+                  {/* Users menu end */}
+                </>
+              )}
+
               <div
                 style={{
                   backgroundColor: "white",

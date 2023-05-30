@@ -27,10 +27,7 @@ const NavBar = () => {
       <NavLink to="/contact" className={isNavLinkActive("/contact")}>
         <li>CONTACT US</li>
       </NavLink>
-      <NavLink
-        to="/dashboard/mycart"
-        className={isNavLinkActive("/dashboard/mycart")}
-      >
+      <NavLink to="/dashboard" className={isNavLinkActive("/dashboard")}>
         <li>DASHBOARD</li>
       </NavLink>
       <NavLink to="/menu" className={isNavLinkActive("/menu")}>
