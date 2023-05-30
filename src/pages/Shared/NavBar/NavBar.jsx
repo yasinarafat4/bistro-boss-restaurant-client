@@ -105,7 +105,7 @@ const NavBar = () => {
             <p onClick={handleLogOut} className="cursor-pointer">
               LOGOUT
             </p>
-            <div className="avatar">
+            <div className="avatar cursor-pointer">
               <div className="w-8 rounded-full ring ring-offset-base-100 ring-offset-2">
                 <img title={user?.displayName} src={user?.photoURL} />
               </div>

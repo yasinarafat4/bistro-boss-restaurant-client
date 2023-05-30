@@ -149,7 +149,7 @@ const Login = () => {
               <p className="text-red-600 text-sm m-1 font-semibold">{error}</p>
               <div className="form-control mt-6">
                 <input
-                  disabled={false} // TODO
+                  disabled={disabled}
                   type="submit"
                   value="Login"
                   className="btn text-lg bg-[#D1A054B3] hover:bg-[#D1A054] hover:duration-500 text-white font-semibold border-none"
