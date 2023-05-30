@@ -11,6 +11,7 @@ import {
 import loginImg from "../../assets/others/login.png";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Helmet } from "react-helmet-async";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
@@ -163,6 +164,7 @@ const Login = () => {
                   </p>
                 </Link>
               </div>
+              <SocialLogin text={"Or sign in with"}></SocialLogin>
             </form>
           </div>
         </div>

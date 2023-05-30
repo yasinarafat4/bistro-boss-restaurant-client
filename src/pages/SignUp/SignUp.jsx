@@ -6,6 +6,7 @@ import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 /*
 Email: bistro@boss.com
@@ -217,6 +218,7 @@ const SignUp = () => {
                   </p>
                 </Link>
               </div>
+              <SocialLogin text={"Or sign up with"}></SocialLogin>
             </form>
           </div>
         </div>
