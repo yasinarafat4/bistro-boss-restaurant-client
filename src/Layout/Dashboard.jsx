@@ -24,7 +24,7 @@ const Dashboard = () => {
   };
 
   // TODO: load data from the server to have dynamic isAdmin based on Data
-  const isAdmin = false;
+  const isAdmin = true;
 
   return (
     <>
