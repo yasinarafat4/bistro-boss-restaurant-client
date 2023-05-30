@@ -36,7 +36,7 @@ const MyCart = () => {
   };
 
   return (
-    <div className="w-9/12 overflow-scroll">
+    <div className="w-9/12 overflow-y-auto">
       <Helmet>
         <title>Bistro | My Cart</title>
       </Helmet>

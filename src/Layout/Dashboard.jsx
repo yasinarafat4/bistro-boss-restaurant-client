@@ -47,7 +47,7 @@ const Dashboard = () => {
           </div>
           <div className="drawer-side bg-[ #F6F6F6]">
             <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-            <ul className="menu p-4 w-80 bg-[#D1A054] text-base-content uppercase font-semibold space-y-5">
+            <ul className="menu p-4 w-80 bg-[#D1A054] text-base-content font-semibold space-y-5">
               <Link to="/">
                 <div className="flex flex-col mb-10">
                   <h2
