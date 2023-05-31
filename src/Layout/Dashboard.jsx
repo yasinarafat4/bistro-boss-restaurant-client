@@ -15,6 +15,7 @@ import { ImSpoonKnife } from "react-icons/im";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import useCart from "../hooks/useCart";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
   const [cart] = useCart();
@@ -23,8 +24,8 @@ const Dashboard = () => {
     return location.pathname === path ? "activeDash" : "defaultDash";
   };
 
-  // TODO: load data from the server to have dynamic isAdmin based on Data
-  const isAdmin = true;
+  // load data from the server to have dynamic isAdmin based on Data
+  const isAdmin = useAdmin();
 
   return (
     <>
