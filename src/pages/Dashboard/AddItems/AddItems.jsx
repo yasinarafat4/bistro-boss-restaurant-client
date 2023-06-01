@@ -2,19 +2,47 @@ import { Helmet } from "react-helmet-async";
 import DashTitle from "../../../components/DashTitle/DashTitle";
 import { useForm } from "react-hook-form";
 import { ImSpoonKnife } from "react-icons/im";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
+const img_hosting_token = import.meta.env.VITE_IMAGE_UPLOAD_TOKEN;
 const AddItems = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const [axiosSecure] = useAxiosSecure();
+  const { register, handleSubmit } = useForm();
+  const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
   const onSubmit = (data) => {
-    console.log(data);
+    const formData = new FormData();
+    formData.append("image", data.image[0]);
+
+    fetch(img_hosting_url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imgResponse) => {
+        if (imgResponse.success) {
+          const imgURL = imgResponse.data.display_url;
+          const { name, price, category, recipe } = data;
+          const newItem = {
+            name,
+            price: parseFloat(price),
+            category,
+            recipe,
+            image: imgURL,
+          };
+          console.log(newItem, imgURL);
+          axiosSecure.post("/menu", newItem).then((data) => {
+            console.log("After posting new menu item", data.data);
+            if (data.data.insertedId) {
+              Swal.fire("Good job!", "Item added successfully!", "success");
+            }
+          });
+        }
+      });
   };
-  console.log(errors);
+
   return (
-    <div className="w-10/12">
+    <div className="w-10/12 overflow-auto">
       <Helmet>
         <title>Bistro | Add Items</title>
       </Helmet>
@@ -40,12 +68,11 @@ const AddItems = () => {
               <span className="label-text font-semibold">Category*</span>
             </label>
             <select
+              defaultValue="Pick One"
               className="select select-bordered font-semibold"
               {...register("category", { required: true })}
             >
-              <option disabled selected>
-                Pick One
-              </option>
+              <option disabled>Pick One</option>
               <option>Dessert</option>
               <option>Pizza</option>
               <option>Salad</option>
@@ -72,7 +99,7 @@ const AddItems = () => {
           <textarea
             className="textarea textarea-bordered h-24"
             placeholder="Recipe Details"
-            {...register("details", { required: true })}
+            {...register("recipe", { required: true })}
           ></textarea>
         </div>
         <div className="form-control w-full max-w-xs">
@@ -82,6 +109,7 @@ const AddItems = () => {
           <input
             type="file"
             className="file-input file-input-bordered w-full max-w-xs"
+            {...register("image", { required: true })}
           />
         </div>
         <button

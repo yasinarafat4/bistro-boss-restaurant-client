@@ -1,4 +1,4 @@
-import { FaLock, FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart } from "react-icons/fa";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
@@ -27,24 +27,25 @@ const NavBar = () => {
       <NavLink to="/contact" className={isNavLinkActive("/contact")}>
         <li>CONTACT US</li>
       </NavLink>
-      <NavLink to="/dashboard" className={isNavLinkActive("/dashboard")}>
-        <li>DASHBOARD</li>
-      </NavLink>
+      {user && (
+        <NavLink to="/dashboard" className={isNavLinkActive("/dashboard")}>
+          <li>DASHBOARD</li>
+        </NavLink>
+      )}
       <NavLink to="/menu" className={isNavLinkActive("/menu")}>
         <li>OUR MENU</li>
       </NavLink>
       <NavLink to="/order/desert" className={isNavLinkActive("/order/desert")}>
         <li>OUR SHOP</li>
       </NavLink>
-      <NavLink to="/">
-        <button className="btn btn-sm gap-2">
-          <FaShoppingCart></FaShoppingCart>
-          <div className="badge badge-secondary">+ {cart?.length || 0}</div>
-        </button>
-      </NavLink>
-      <Link to="/secret">
-        <FaLock></FaLock>
-      </Link>
+      {user && (
+        <NavLink to="/dashboard/mycart">
+          <button className="btn btn-sm gap-2">
+            <FaShoppingCart></FaShoppingCart>
+            <div className="badge badge-secondary">+ {cart?.length || 0}</div>
+          </button>
+        </NavLink>
+      )}
     </>
   );
   return (
