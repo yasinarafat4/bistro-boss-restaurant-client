@@ -28,7 +28,7 @@ const MyCart = () => {
           .then((data) => {
             if (data.deletedCount > 0) {
               refetch();
-              Swal.fire("Deleted!", "Your item has been deleted.", "success");
+              Swal.fire("Deleted!", "Item has been deleted.", "success");
             }
           });
       }

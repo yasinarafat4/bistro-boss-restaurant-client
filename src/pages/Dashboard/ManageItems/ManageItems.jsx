@@ -2,9 +2,35 @@ import { Helmet } from "react-helmet-async";
 import DashTitle from "../../../components/DashTitle/DashTitle";
 import useMenu from "../../../hooks/useMenu";
 import { FaEdit, FaRegTrashAlt } from "react-icons/fa";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const ManageItems = () => {
-  const [menu] = useMenu();
+  const [menu, , refetch] = useMenu();
+  const [axiosSecure] = useAxiosSecure();
+
+  const handleDelete = (item) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/menu/${item._id}`).then((res) => {
+          console.log("deleted res", res.data);
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire("Deleted!", "Menu has been deleted.", "success");
+          }
+        });
+      }
+    });
+  };
+
   return (
     <div className="w-10/12 overflow-auto">
       <Helmet>
@@ -23,13 +49,14 @@ const ManageItems = () => {
         <table className="table w-full">
           {/* head */}
           <thead>
-            <tr className="uppercase">
+            <tr>
               <th className="bg-[#D1A054] text-white">#</th>
               <th className="bg-[#D1A054] text-white">Item Image</th>
               <th className="bg-[#D1A054] text-white">Item Name</th>
+              <th className="bg-[#D1A054] text-white">Item Category</th>
               <th className="bg-[#D1A054] text-white">Price</th>
-              <th className="bg-[#D1A054] text-white">Action</th>
-              <th className="bg-[#D1A054] text-white">Action</th>
+              <th className="bg-[#D1A054] text-white">Update</th>
+              <th className="bg-[#D1A054] text-white">Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -47,7 +74,9 @@ const ManageItems = () => {
                   </div>
                 </td>
                 <td>{item.name}</td>
+                <td>{item.category}</td>
                 <td className="text-end">${item.price}</td>
+
                 <td>
                   <button className=" p-2 text-white bg-[#D1A054] border-none rounded">
                     {" "}
@@ -55,7 +84,10 @@ const ManageItems = () => {
                   </button>
                 </td>
                 <td>
-                  <button className=" p-2 text-white bg-[#B91C1C] border-none rounded">
+                  <button
+                    onClick={() => handleDelete(item)}
+                    className=" p-2 text-white bg-[#B91C1C] border-none rounded"
+                  >
                     {" "}
                     <FaRegTrashAlt />
                   </button>

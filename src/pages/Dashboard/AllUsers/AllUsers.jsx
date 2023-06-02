@@ -58,6 +58,7 @@ const AllUsers = () => {
       });
   };
 
+  console.log(users);
   return (
     <div className="w-10/12 overflow-y-auto">
       <Helmet>
@@ -81,7 +82,7 @@ const AllUsers = () => {
                 <th className="bg-[#D1A054] text-white">Action</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="">
               {users.map((user, index) => (
                 <tr key={user._id}>
                   <td>{index + 1}</td>
