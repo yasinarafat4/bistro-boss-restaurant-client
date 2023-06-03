@@ -48,19 +48,14 @@ const Dashboard = () => {
           </div>
           <div className="drawer-side bg-[ #F6F6F6]">
             <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-            <ul className="menu p-4 w-80 bg-[#D1A054] text-base-content font-semibold space-y-5">
+            <ul
+              className="menu p-4 w-80 bg-[#D1A054] text-base-content font-semibold space-y-5"
+              style={{ fontFamily: "Cinzel, serif" }}
+            >
               <Link to="/">
                 <div className="flex flex-col mb-10">
-                  <h2
-                    className="text-2xl font-extrabold"
-                    style={{ fontFamily: "Cinzel, serif" }}
-                  >
-                    BISTRO BOSS
-                  </h2>
-                  <p
-                    className="text-base tracking-[4px] font-extrabold"
-                    style={{ fontFamily: "Cinzel, serif" }}
-                  >
+                  <h2 className="text-2xl font-extrabold">BISTRO BOSS</h2>
+                  <p className="text-base tracking-[4px] font-extrabold">
                     RESTAURANT
                   </p>
                 </div>
@@ -117,8 +112,8 @@ const Dashboard = () => {
                     <li>User Home</li>
                   </NavLink>
                   <NavLink
-                    to="/dashboard/reservations"
-                    className={isNavLinkActive("/dashboard/reservations")}
+                    to="/dashboard/payment"
+                    className={isNavLinkActive("/dashboard/payment")}
                   >
                     <FaCalendarAlt className="text-2xl" />
                     <li>Reservation</li>
