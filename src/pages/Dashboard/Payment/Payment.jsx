@@ -21,7 +21,7 @@ const Payment = () => {
         heading={"PAYMENT"}
       ></DashTitle>
       <Elements stripe={stripePromise}>
-        <CheckoutForm price={price}></CheckoutForm>
+        <CheckoutForm cart={cart} price={price}></CheckoutForm>
       </Elements>
     </div>
   );
