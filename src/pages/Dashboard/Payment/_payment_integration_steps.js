@@ -7,7 +7,7 @@
 6. use test card to test payment
 7. On the server side install stripe
 8. Create  payment intent api with payment method types: ['card'] make sure provide amount in cents (multiply price with 100)
-
+9. use confirmCardPayment API with client secret card info
 
 
 

@@ -5,7 +5,6 @@ import useAuth from "../../../hooks/useAuth";
 
 const CheckoutForm = ({ price }) => {
   const stripe = useStripe();
-  paymentMethod;
   const elements = useElements();
   const [axiosSecure] = useAxiosSecure();
   const [cardError, setCardError] = useState();
@@ -33,6 +32,19 @@ const CheckoutForm = ({ price }) => {
       return;
     }
 
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: "card",
+      card,
+    });
+
+    if (error) {
+      console.log("error", error);
+      setCardError(error.message);
+    } else {
+      setCardError("");
+      console.log("payment method", paymentMethod);
+    }
+
     // Use your card Element with other Stripe.js APIs
     const { paymentIntent, error: confirmError } =
       await stripe.confirmCardPayment(clientSecret, {
@@ -47,6 +59,7 @@ const CheckoutForm = ({ price }) => {
     if (confirmError) {
       console.log(confirmError);
     }
+    console.log(paymentIntent);
   };
   return (
     <>
@@ -70,7 +83,7 @@ const CheckoutForm = ({ price }) => {
         <button
           className="btn btn-primary  btn-wide mt-10"
           type="submit"
-          disabled={!stripe}
+          disabled={!stripe || !clientSecret}
         >
           Pay
         </button>
