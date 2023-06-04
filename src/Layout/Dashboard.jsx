@@ -105,8 +105,8 @@ const Dashboard = () => {
                 <>
                   {/* Users menu start */}
                   <NavLink
-                    to="/dashboard/home"
-                    className={isNavLinkActive("/dashboard/home")}
+                    to="/dashboard/userHome"
+                    className={isNavLinkActive("/dashboard/userHome")}
                   >
                     <FaHome className="text-2xl" />
                     <li>User Home</li>
@@ -126,8 +126,8 @@ const Dashboard = () => {
                     <li>Payment History</li>
                   </NavLink>
                   <NavLink
-                    to="/dashboard/mycart"
-                    className={isNavLinkActive("/dashboard/mycart")}
+                    to="/dashboard/myCart"
+                    className={isNavLinkActive("/dashboard/myCart")}
                   >
                     <FaShoppingCart className="text-2xl" />
                     <li>My Cart</li>

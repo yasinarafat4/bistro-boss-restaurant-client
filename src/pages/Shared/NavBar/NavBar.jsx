@@ -3,10 +3,12 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import useCart from "../../../hooks/useCart";
+import useAdmin from "../../../hooks/useAdmin";
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
   const location = useLocation();
+  const [isAdmin] = useAdmin();
   const [cart] = useCart();
 
   const handleLogOut = () => {
@@ -28,7 +30,10 @@ const NavBar = () => {
         <li>CONTACT US</li>
       </NavLink>
       {user && (
-        <NavLink to="/dashboard" className={isNavLinkActive("/dashboard")}>
+        <NavLink
+          to={isAdmin ? "/dashboard/adminHome" : "/dashboard/userHome"}
+          className={isNavLinkActive("/dashboard")}
+        >
           <li>DASHBOARD</li>
         </NavLink>
       )}
@@ -39,7 +44,7 @@ const NavBar = () => {
         <li>OUR SHOP</li>
       </NavLink>
       {user && (
-        <NavLink to="/dashboard/mycart">
+        <NavLink to="/dashboard/myCart">
           <button className="btn btn-sm gap-2">
             <FaShoppingCart></FaShoppingCart>
             <div className="badge badge-secondary">+ {cart?.length || 0}</div>
