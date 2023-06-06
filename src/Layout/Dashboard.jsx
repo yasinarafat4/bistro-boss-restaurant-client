@@ -85,12 +85,11 @@ const Dashboard = () => {
                     <FaListUl className="text-2xl" />
                     <li>Manage Items</li>
                   </NavLink>
-                  <NavLink
-                    to="/dashboard/manageBookings"
-                    className={isNavLinkActive("/dashboard/manageBookings")}
-                  >
+                  <NavLink to="/" className={isNavLinkActive("/")}>
                     <FaBook className="text-2xl" />
-                    <li>Manage Bookings</li>
+                    <li>
+                      Manage Bookings <br /> (Not Implemented)
+                    </li>
                   </NavLink>
                   <NavLink
                     to="/dashboard/allUsers"
@@ -118,12 +117,11 @@ const Dashboard = () => {
                     <FaCalendarAlt className="text-2xl" />
                     <li>Reservation</li>
                   </NavLink>
-                  <NavLink
-                    to="/dashboard/history"
-                    className={isNavLinkActive("/dashboard/history")}
-                  >
+                  <NavLink to="/" className={isNavLinkActive("/")}>
                     <FaWallet className="text-2xl" />
-                    <li>Payment History</li>
+                    <li>
+                      Payment History <br /> (Not Implemented){" "}
+                    </li>
                   </NavLink>
                   <NavLink
                     to="/dashboard/myCart"
@@ -135,19 +133,17 @@ const Dashboard = () => {
                       + {cart?.length || 0}
                     </div>
                   </NavLink>
-                  <NavLink
-                    to="/dashboard/reviews"
-                    className={isNavLinkActive("/dashboard/reviews")}
-                  >
+                  <NavLink to="/" className={isNavLinkActive("/")}>
                     <GiStarsStack className="text-2xl" />
-                    <li>Add Review</li>
+                    <li>
+                      Add Review <br /> (Not Implemented)
+                    </li>
                   </NavLink>
-                  <NavLink
-                    to="/dashboard/mybookings"
-                    className={isNavLinkActive("/dashboard/mybookings")}
-                  >
+                  <NavLink to="/" className={isNavLinkActive("/")}>
                     <FaCalendarPlus className="text-2xl" />
-                    <li>My Booking</li>
+                    <li>
+                      My Booking <br /> (Not Implemented)
+                    </li>
                   </NavLink>
                   {/* Users menu end */}
                 </>

@@ -68,7 +68,12 @@ const AllUsers = () => {
         subHeading={"---How many??---"}
         heading={"MANAGE ALL USERS"}
       ></DashTitle>
-      <h2 className="text-2xl font-bold">Total Users: {users.length}</h2>
+      <h2
+        style={{ fontFamily: "Cinzel, serif" }}
+        className="text-2xl font-bold"
+      >
+        Total Users: {users.length}
+      </h2>
       <div className="font-bold flex justify-evenly items-center mb-4">
         <div className="overflow-x-auto w-full">
           <table className="table w-full">
