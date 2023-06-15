@@ -15,7 +15,7 @@ const useCart = () => {
     enabled: !loading,
     // queryFn: async () => {
     //   const res = await fetch(
-    //     `http://localhost:5000/carts?email=${user.email}`,
+    //     `https://bistro-boss-server-self-eta.vercel.app/carts?email=${user.email}`,
     //     {
     //       headers: {
     //         authorization: `Bearer ${token}`,
